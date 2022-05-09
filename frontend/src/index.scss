@@ -1,0 +1,242 @@
+$colors:
+  hsla(337, 84, 48, 0.75)
+  hsla(160, 50, 48, 0.75)
+  hsla(190, 61, 65, 0.75)
+  hsla( 41, 82, 52, 0.75);
+$size: 2.5em;
+$thickness: 0.5em;
+
+// Calculated variables.
+$lat: ($size - $thickness) / 2;
+$offset: $lat - $thickness;
+
+.loader {
+  position: relative;
+  width: $size;
+  height: $size;
+  transform: rotate(165deg);
+  
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    display: block;
+    width: $thickness;
+    height: $thickness;
+    border-radius: $thickness / 2;
+    transform: translate(-50%, -50%);
+  }
+  
+  &:before {
+    animation: before 2s infinite;
+  }
+  
+  &:after {
+    animation: after 2s infinite;
+  }
+}
+
+@keyframes before {
+  0% {
+    width: $thickness;
+    box-shadow:
+      $lat (-$offset) nth($colors, 1),
+      (-$lat) $offset nth($colors, 3);
+  }
+  35% {
+    width: $size;
+    box-shadow:
+      0 (-$offset) nth($colors, 1),
+      0   $offset  nth($colors, 3);
+  }
+  70% {
+    width: $thickness;
+    box-shadow:
+      (-$lat) (-$offset) nth($colors, 1),
+      $lat $offset nth($colors, 3);
+  }
+  100% {
+    box-shadow:
+      $lat (-$offset) nth($colors, 1),
+      (-$lat) $offset nth($colors, 3);
+  }
+}
+
+@keyframes after {
+  0% {
+    height: $thickness;
+    box-shadow:
+      $offset $lat nth($colors, 2),
+      (-$offset) (-$lat) nth($colors, 4);
+  }
+  35% {
+    height: $size;
+    box-shadow:
+        $offset  0 nth($colors, 2),
+      (-$offset) 0 nth($colors, 4);
+  }
+  70% {
+    height: $thickness;
+    box-shadow:
+      $offset (-$lat) nth($colors, 2),
+      (-$offset) $lat nth($colors, 4);
+  }
+  100% {
+    box-shadow:
+      $offset $lat nth($colors, 2),
+      (-$offset) (-$lat) nth($colors, 4);
+  }
+}
+
+
+
+/**
+ * Attempt to center the whole thing!
+ */
+
+html,
+body {
+  height: 100%;
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - #{$size / 2});
+  left: calc(50% - #{$size / 2});
+}
+
+
+
+
+
+
+/*==============================*/
+
+
+
+
+// Colors
+$default: #212121;
+$grey: #efefef;
+$main-color: #fd7e14;
+
+// Basic
+
+
+// Progress bar
+#progress-bar {
+  display: table;
+  width: 100%;
+  margin: 0;
+  padding: 15px 15px 0;
+  table-layout: fixed;
+  width: 100%;
+  counter-reset: step;
+  li {
+    list-style-type: none;
+    display: table-cell;
+    width: 20%;
+    float: left;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+    &:before {
+      width: 50px;
+      height: 50px;
+      color: $default;
+      content: counter(step);
+      counter-increment: step;
+      line-height: 50px;
+      font-size: 18px;
+      border: 1px solid $grey;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+    &:after {
+      width: 100%;
+      height: 10px;
+      content: '';
+      position: absolute;
+      background-color: #fff;
+      top: 25px;
+      left: -50%;
+      z-index: -1;
+    }
+    &:first-child:after {
+      content: none;
+    }
+    &.step-done {
+      color: $main-color;
+      &:before {
+        border-color: $main-color;
+        background-color: $main-color;
+        color: #fff;
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+      }
+      & + li:after {
+        background-color: $main-color;
+      }
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+$coral: #eb9478;
+$maroon: #8e2807;
+$title: #493b76;
+
+
+
+
+
+
+h1 {
+    align-self: center;
+}
+
+form {
+    width: 100%;
+
+    >* {
+        margin-top: 20px;
+    }
+
+ 
+
+   
+
+    h1 {
+        font-size: 24px;
+        line-height: 10px;
+        color: $title;
+        letter-spacing: 1px;
+    }
+
+    
+}
+
+
+
+.w-25 {
+  width: 100%!important;
+}
